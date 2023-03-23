@@ -1,0 +1,27 @@
+{
+  "name": "devcards-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgeTsez/DevCards-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeorgeTsez/DevCards-Backend/issues"
+  },
+  "homepage": "https://github.com/GeorgeTsez/DevCards-Backend#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
