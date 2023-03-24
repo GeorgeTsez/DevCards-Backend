@@ -7,7 +7,7 @@ const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
 app.get('/', (req, res) => {
   mongoose.connect(
-    "mongodb+srv://Cluster64244:bIkmux@cluster64244.fhbnizy.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://bytefish2023:VdSZnmjPkcwbJaLy@cluster74566.tybzm3n.mongodb.net/?retryWrites=true&w=majority",
     options
   )
   .then(conn => {
