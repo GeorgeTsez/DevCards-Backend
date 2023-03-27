@@ -5,28 +5,7 @@ app.use(express.json());
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
 
-app.get('/', (req, res) => {
-  mongoose.connect(
-    "mongodb+srv://bytefish2023:VdSZnmjPkcwbJaLy@cluster74566.tybzm3n.mongodb.net/?retryWrites=true&w=majority",
-    options
-  )
-  .then(conn => {
-    const userSchema = new mongoose.Schema({ name: String, age: Number });
-    const User = mongoose.model("User", userSchema);
-    const newUser = new User({ name: "Reem", age: 18 });
-    newUser
-      .save()
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  })
-  .catch(err => {
-    console.log(err)
-  })
-})
+app.get('/', (req, res) => {})
 
 const PORT = 9090;
 

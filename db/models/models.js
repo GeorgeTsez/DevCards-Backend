@@ -1,8 +1,19 @@
 const mongoose = require('mongoose');
-const {cardSchema, deckSchema, userSchema} = require("../schemas/schemas")
+const schemas = require("../schemas/schemas")
 
-const Card = mongoose.model("Card", cardSchema);
-const Deck = mongoose.model("Deck", deckSchema);
-const User = mongoose.model("User", userSchema);
+const models = {}
 
-module.exports = {Card, Deck, User};
+schemas.then(([cardSchema, deckSchema, userSchema]) => {
+    Promise.all([
+        mongoose.model("Card", cardSchema),
+        mongoose.model("Deck", deckSchema),
+        mongoose.model("User", userSchema)
+    ]).then(([card, deck, user]) => {
+        models.Card = card;
+        models.Deck = deck;
+        models.User = user;
+    })
+})
+
+
+module.exports = models;
