@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const { goose } = require("./db");
 const app = express();
 app.use(express.json());
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -16,7 +15,7 @@ app.get('/', (req, res) => {
     const User = mongoose.model("User", userSchema);
     const newUser = new User({ name: "Reem", age: 18 });
     newUser
-      .save() //.create??//
+      .save()
       .then((result) => {
         console.log(result);
       })
