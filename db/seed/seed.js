@@ -10,10 +10,16 @@ connection
     const Card = mongoose.model("Card", cardSchema);
     const Deck = mongoose.model("Deck", deckSchema)
     Promise.all([ Card.insertMany(testdata), Deck.insertMany(testdecks)])
-      .then((res) => {
-        console.log(res);
-        
-        mongoose.connection.close();
+      .then(([cardsFromDb, decksFromDb]) => {
+        Promise.all([cardsFromDb.map((card, index) => {
+          if (index < 7) return Deck.updateOne({_id: decksFromDb[0]._id}, {$addToSet: {cards: card._id}})
+          if (index === 7) return Deck.updateOne({_id: decksFromDb[1]._id}, {$addToSet: {cards: card._id}})
+          if (index === 8) return Deck.updateOne({_id: decksFromDb[3]._id}, {$addToSet: {cards: card._id}})
+          if (index > 8) return Deck.updateOne({_id: decksFromDb[4]._id}, {$addToSet: {cards: card._id}})
+        })])
+        .then((resp) => {
+          mongoose.connection.close();
+        })
       })
       .catch((err) => {
         console.log(err);
