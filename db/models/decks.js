@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
 const deckSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   title: String,
   description: String,
-  cards: Object,
+  cards: [{ type: mongoose.Schema.Types.ObjectId, ref: "cards" }],
 });
 
 const Deck = mongoose.model("Deck", deckSchema);

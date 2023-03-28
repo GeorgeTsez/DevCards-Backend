@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "seed-prod": "NODE_ENV=production npm run seed",
+    "seed": "node ./db/seed/run-seed.js"
   },
   "repository": {
     "type": "git",

@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const { seedDecks } = require("./decks");
 const { seedCards } = require("./cards");
+const { seedUsers } = require("./users");
 
 const seed = () => {
-  return seedDecks()
+  return Promise.all([seedDecks(), seedCards(), seedUsers()])
     .then((res) => {
       console.log(res, "seed completed");
-      return mongoose.connection.close();
     })
     .catch((err) => {
       console.log(err);
