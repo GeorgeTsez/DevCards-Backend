@@ -17,11 +17,22 @@ const { seedDecks } = require("./decks");
 //     });
 // };
 
-const seed = async () => {
-  await connection;
-  console.log("Connection Succesfull");
-  await seedDecks();
-  await mongoose.connection.close();
+const seed = () => {
+  // await connection
+  // console.log("Connection Succesfull");
+  // await seedDecks().then((res) => {
+  //   console.log(res);
+  // });
+  // await mongoose.connection.close()
+
+  return seedDecks()
+    .then((res) => {
+      console.log(res, "seed completed");
+      return mongoose.connection.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 module.exports = seed;

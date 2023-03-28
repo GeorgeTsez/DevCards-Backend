@@ -4,8 +4,12 @@ const connection = require("../db/connection");
 
 const runBefore = async () => {
   await connection;
-  await mongoose.connection.db.dropDatabase();
-  await seed();
+  console.log(mongoose.connection.readyState);
+  await mongoose.connection.once("open", async () => {
+    console.log("after connection.once");
+    await mongoose.connection.db.dropDatabase();
+    await seed();
+  });
 };
 
 const runAfter = async () => {
