@@ -19,7 +19,9 @@ if (ENV === "production") {
   dbURI = process.env.PRODUCTION;
 }
 
-const connection = mongoose.connect(dbURI, options);
+const connection = mongoose.connect(dbURI, options).then((connect) => {
+  console.log(connect);
+});
 
 console.log(mongoose.connection.readyState);
 module.exports = connection;
