@@ -21,7 +21,7 @@ const decks = [
   },
 ];
 
-const seedDecks = async () => {
+const seedDecks = () => {
   return Deck.insertMany(decks);
 };
 

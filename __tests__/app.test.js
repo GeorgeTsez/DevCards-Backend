@@ -1,4 +1,4 @@
-// const mongoose = require('mongoose');
+
 const seed = require("../db/seed/seed");
 // const request = require('supertest');
 // const app = require('../app');
@@ -10,9 +10,9 @@ beforeEach(async () => {
   await runBefore();
 });
 
-// afterAll(async () => {
-//   await runAfter();
-// });
+afterAll(async () => {
+  await runAfter();
+});
 
 describe("Test 1", () => {
   it("Test 1", () => {
