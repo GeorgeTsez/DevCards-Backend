@@ -1,3 +1,5 @@
+const { fetchDecks } = require("");
+
 exports.getDecks = (req, res, next) => {
   fetchDecks()
     .then((decks) => {
