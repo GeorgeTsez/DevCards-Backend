@@ -3,6 +3,7 @@ const connection = require("../connection");
 const mongoose = require("mongoose");
 // const testData = require("../data/testdata");
 const { seedDecks } = require("./decks");
+const { seedCards } = require("./cards");
 
 // const seed = async () => {
 
@@ -25,7 +26,7 @@ const seed = () => {
   // });
   // await mongoose.connection.close()
 
-  return seedDecks()
+  return Promise.all([seedDecks(), seedCards()])
     .then((res) => {
       console.log(res, "seed completed");
       return mongoose.connection.close();
