@@ -4,73 +4,24 @@ const mongoose = require("mongoose");
 // const testData = require("../data/testdata");
 const { seedDecks } = require("./decks");
 
-const seed = async () => {
-  connection
-    .then(() => {
-      console.log(mongoose.connection.readyState);
-      return Promise.all([seedDecks()]).then(() => {
-        console.log("Seed Completed!");
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+// const seed = async () => {
 
-// const seed = (data) => {
-//   connection
+//   await connection
+//   return Promise.all([seedDecks()])
 //     .then(() => {
-//       Promise.all([
-//         Card.insertMany(data.cards),
-//         Deck.insertMany(data.decks),
-//         User.insertMany(data.users),
-//       ])
-//         .then(([cardsFromDb, decksFromDb, usersFromDb]) => {
-//           Promise.all([
-//             ...cardsFromDb.map((card, index) => {
-//               if (index < 7)
-//                 return Deck.updateOne(
-//                   { _id: decksFromDb[0]._id },
-//                   { $addToSet: { cards: card._id } }
-//                 );
-//               if (index === 7)
-//                 return Deck.updateOne(
-//                   { _id: decksFromDb[1]._id },
-//                   { $addToSet: { cards: card._id } }
-//                 );
-//               if (index === 8)
-//                 return Deck.updateOne(
-//                   { _id: decksFromDb[3]._id },
-//                   { $addToSet: { cards: card._id } }
-//                 );
-//               if (index > 8)
-//                 return Deck.updateOne(
-//                   { _id: decksFromDb[4]._id },
-//                   { $addToSet: { cards: card._id } }
-//                 );
-//             }),
-//             User.updateOne(
-//               { _id: usersFromDb[0] },
-//               {
-//                 $addToSet: {
-//                   user_decks: [
-//                     ...decksFromDb.map((deck) => {
-//                       return deck._id;
-//                     }),
-//                   ],
-//                 },
-//               }
-//             ),
-//           ]).then((resp) => {});
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//           mongoose.connection.close();
-//         });
+//       console.log("Seed Completed!");
 //     })
+
 //     .catch((err) => {
 //       console.log(err);
 //     });
 // };
+
+const seed = async () => {
+  await connection;
+  console.log("Connection Succesfull");
+  await seedDecks();
+  await mongoose.connection.close();
+};
 
 module.exports = seed;
