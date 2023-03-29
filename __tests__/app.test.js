@@ -1,11 +1,10 @@
 const seed = require("../db/seed/seed");
 const request = require("supertest");
-const app = require("../app");
+const { app } = require("../app");
 // const sorted = require('jest-sorted');
-const { runAfter } = require("../utils/utils");
-const { runBefore } = require("../utils/utils");
+const { runAfter, runBefore } = require("../utils/utils");
 
-beforeEach(async () => {
+beforeAll(async () => {
   await runBefore();
 });
 
