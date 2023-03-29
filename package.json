@@ -5,9 +5,9 @@
   "main": "listen.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "seed-prod": "NODE_ENV=production npm run seed",
+    "seed-dev": "NODE_ENV=development npm run seed",
     "seed": "node ./db/seed/run-seed.js",
-    "start": "node listen.js"
+    "start": "NODE_ENV=development node listen.js"
   },
   "repository": {
     "type": "git",
