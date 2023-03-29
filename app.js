@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const {
   handle404Paths,
   handle500Errors,
