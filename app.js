@@ -1,14 +1,19 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const {
+  handle404Paths,
+  handle500Errors,
+} = require("./controllers/error-handling-controllers");
 const app = express();
 app.use(express.json());
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
+//do we need cors??
 
-app.get('/', (req, res) => {})
+const apiRouter = require("./routes/api-router");
 
-const PORT = 9090;
+app.use("/api", apiRouter);
 
-app.listen(PORT, () => {
-    console.log('Listening on', PORT);
-})
+app.use(handle404Paths);
+app.use(handle500Errors);
+
+module.exports = app;
