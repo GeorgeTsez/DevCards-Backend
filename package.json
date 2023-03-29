@@ -2,7 +2,7 @@
   "name": "devcards-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "listen.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
     "seed-prod": "NODE_ENV=production npm run seed",
