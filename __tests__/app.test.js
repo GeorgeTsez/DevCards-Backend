@@ -14,6 +14,16 @@ afterAll(async () => {
 });
 
 describe("app", () => {
+  describe("404 for invalid path", () => {
+    it("responds with a 404 on a incorrect route", () => {
+      return request(app)
+        .get("/api/not-a-path")
+        .expect(404)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Path Not Found");
+        });
+    });
+  });
   describe("GET-/api/decks", () => {
     it("responds with all the decks in the DB and a 200 status code", () => {
       return request(app)
