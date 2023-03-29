@@ -1,9 +1,12 @@
 const connection = require("../db/connection");
 const { Deck } = require("../db/models/decks");
+const mongoose = require("mongoose");
 
 exports.fetchDecks = () => {
-  connection();
-  return Deck.find({}).then((decks) => {
-    return decks;
+  return connection().then(() => {
+    return Deck.find({}).then((decks) => {
+      mongoose.connection.close();
+      return decks;
+    });
   });
 };
