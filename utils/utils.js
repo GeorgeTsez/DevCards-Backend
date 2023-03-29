@@ -1,17 +1,19 @@
 const mongoose = require("mongoose");
 const seed = require("../db/seed/seed");
-const connection = require("../db/connection");
+const { MongoMemoryServer } = require("mongodb-memory-server");
+const setupDB = require("../db/connection");
 
-const runBefore = () => {
- return connection().then(() => {
-    return mongoose.connection.db.dropDatabase().then(() => {
-      return seed();
-    });
-  });
+let mongo;
+
+const runBefore = async () => {
+  mongo = await MongoMemoryServer.create();
+  console.log(await mongo.getUri());
+  await setupDB(mongo.getUri());
+  await seed();
 };
 
-const runAfter = () => {
-  return mongoose.connection.close();
+const runAfter = async () => {
+  await mongo.stop();
 };
 
 module.exports = { runBefore, runAfter };
