@@ -4,5 +4,5 @@ exports.handle404Paths = (req, res, next) => {
 
 exports.handle500Errors = (err, req, res, next) => {
   console.log(err);
-  res.status(500).send({ msg: "500 Internal Server Error" });
+  res.status(500).send({ msg: "500 Internal Server Error", err });
 };
