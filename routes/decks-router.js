@@ -1,3 +1,5 @@
+const { getDecks } = require("../controllers/decks-controllers");
+
 const decksRouter = require("express").Router();
 
 decksRouter.route("/").get(getDecks);
@@ -6,4 +8,4 @@ decksRouter.route("/").get(getDecks);
 
 // decksRouter.route("/:decks_id").get(getDecksById).patch(patchDeck)
 
-// module.exports = reviewsRouter;
+module.exports = decksRouter;

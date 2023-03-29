@@ -8,10 +8,6 @@ const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
 const apiRouter = require("./routes/api-router");
 
-app.get("/", (req, res) => {});
+app.use("/api", apiRouter);
 
-const PORT = 9090;
-
-app.listen(PORT, () => {
-  console.log("Listening on", PORT);
-});
+module.exports = app;

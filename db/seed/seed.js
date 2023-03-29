@@ -6,7 +6,7 @@ const { seedUsers } = require("./users");
 const seed = () => {
   return Promise.all([seedDecks(), seedCards(), seedUsers()])
     .then((res) => {
-      console.log(res, "seed completed");
+      console.log("seed completed");
     })
     .catch((err) => {
       console.log(err);

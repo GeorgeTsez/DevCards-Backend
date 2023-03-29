@@ -1,4 +1,4 @@
-const { fetchDecks } = require("");
+const { fetchDecks } = require("../models/decks-models");
 
 exports.getDecks = (req, res, next) => {
   fetchDecks()
