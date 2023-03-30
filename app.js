@@ -18,8 +18,6 @@ const init = () => {
     });
 };
 
-//do we need cors??
-
 const apiRouter = require("./routes/api-router");
 
 app.use("/api", apiRouter);
