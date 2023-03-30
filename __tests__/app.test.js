@@ -1,4 +1,4 @@
-const seed = require("../db/seed/seed");
+// const seed = require("../db/seed/seed");
 const request = require("supertest");
 const { app } = require("../app");
 // const sorted = require('jest-sorted');
