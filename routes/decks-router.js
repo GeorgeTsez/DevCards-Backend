@@ -8,6 +8,6 @@ const decksRouter = require("express").Router();
 
 decksRouter.route("/").get(getDecks).post(postSingleDeck);
 
-decksRouter.route("/:decks_id/cards").get(getCardsByDeckId)
+decksRouter.route("/:deck_id/cards").get(getCardsByDeckId)
 
 module.exports = decksRouter;
