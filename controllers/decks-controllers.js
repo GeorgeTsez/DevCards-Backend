@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-const { fetchDecks, createSingleDeck } = require("../models/decks-models");
-=======
-const { fetchDecks, fetchCardsByDeckId } = require("../models/decks-models");
->>>>>>> 53ac856 (incomplete, will return)
+const { fetchDecks, fetchCardsByDeckId, createSingleDeck } = require("../models/decks-models");
 
 exports.getDecks = (req, res, next) => {
   fetchDecks()
@@ -14,17 +10,6 @@ exports.getDecks = (req, res, next) => {
     });
 };
 
-<<<<<<< HEAD
-exports.postSingleDeck = (req, res, next) => {
-  const {body} = req
-  createSingleDeck(body)
-
-    .then((createdDeck) => {
-      res.status(201).send({ createdDeck });
-    })
-    .catch((err) => {
-      console.log(err)
-=======
 exports.getCardsByDeckId = (req, res, next) => {
   const { deck_id } = req.params;
   fetchCardsByDeckId(deck_id)
@@ -32,7 +17,18 @@ exports.getCardsByDeckId = (req, res, next) => {
       res.status(200).send({ cards });
     })
     .catch((err) => {
->>>>>>> 53ac856 (incomplete, will return)
+      next(err);
+    });
+  };
+
+exports.postSingleDeck = (req, res, next) => {
+  const {body} = req
+  createSingleDeck(body)
+    .then((createdDeck) => {
+      res.status(201).send({ createdDeck });
+    })
+    .catch((err) => {
+      console.log(err)
       next(err);
     });
 };
