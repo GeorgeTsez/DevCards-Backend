@@ -5,10 +5,8 @@ exports.fetchDecks = async () => {
 };
 
 exports.createSingleDeck = async (body) => {
-  
-  return  Deck.create({title: "Any Deck",
-  description: "Trying to be Created"})
-  
+  return Deck.create({title: "Any Deck",
+  description: "Trying to be Created"})  
 }
 
 exports.fetchCardsByDeckId = async (deckId) => {
@@ -20,8 +18,7 @@ exports.fetchCardsByDeckId = async (deckId) => {
 };
 
 exports.createSingleDeck = async (body) => {
-  
   return  Deck.create({title: "Any Deck",
   description: "Trying to be Created"})
-  
-}
+};
+

@@ -7,6 +7,7 @@ let mongo;
 
 const runBefore = async () => {
   mongo = await MongoMemoryServer.create();
+  console.log(await mongo.getUri());
   await setupDB(mongo.getUri());
 };
 
