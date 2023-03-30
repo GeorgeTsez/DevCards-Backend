@@ -7,18 +7,17 @@ let mongo;
 
 const runBefore = async () => {
   mongo = await MongoMemoryServer.create();
-  console.log(await mongo.getUri());
   await setupDB(mongo.getUri());
 };
+
+const runBeforeEachTest = async () => {
+  await mongoose.connection.dropDatabase();
+  await seed();
+}
 
 const runAfter = async () => {
   await mongoose.disconnect();
   await mongo.stop();
 };
-
-const runBeforeEachTest = async () => {
-  await mongoose.connection.db.dropDatabase()
-  await seed()
-}
 
 module.exports = { runBefore, runAfter, runBeforeEachTest };

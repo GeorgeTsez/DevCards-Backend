@@ -1,9 +1,11 @@
-// const seed = require("../db/seed/seed");
 const request = require("supertest");
 const { app } = require("../app");
 // const sorted = require('jest-sorted');
 const { runAfter, runBefore, runBeforeEachTest } = require("../utils/utils");
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecdcf10 (I dont know anymore)
 
 beforeAll(async () => {
   await runBefore();
