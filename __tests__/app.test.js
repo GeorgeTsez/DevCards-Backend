@@ -42,4 +42,23 @@ describe("app", () => {
         });
     });
   });
-});
+  describe("GET-/api/users/:user_id", () => {
+    it("responds with all the user info and 200 status code ", () => {
+     const user = "c90e5fc8f598188830bbf104"
+      return request(app)
+        .get(`/api/users/${user}`)
+        .expect(200)
+        .then(({ body: { user } }) => {
+          expect(user[0]).toBeInstanceOf(Object);
+            expect(user[0]).toMatchObject({
+              _id:"c90e5fc8f598188830bbf104",
+              email:"user@mushroomkingdom.org",
+              username: "Mario",
+              user_decks: expect.any(Array)
+            });
+          });
+        });
+    });
+  });
+
+
