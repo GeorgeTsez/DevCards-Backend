@@ -60,5 +60,28 @@ describe("app", () => {
         });
     });
   });
+  describe("POST /api/deck/", () => {
+    test("201 status code: Created a deck", () => {
+      const input =  {
+        title: "Any Deck",
+        description: "Trying to be Created"
+      }
+      return request(app)
+        .post(`/api/decks/`)
+        .send(input)
+        .expect(201)
+        .then(({ body }) => {
+          expect(body.createdDeck).toBeInstanceOf(Object);
+          expect(body.createdDeck).toEqual(
+            expect.objectContaining({
+              title: "Any Deck",
+              description: "Trying to be Created",
+              cards: [],
+              _id: expect.any(String)
+            })
+          );
+        });
+    });
+  })
 
 
