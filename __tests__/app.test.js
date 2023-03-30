@@ -60,14 +60,15 @@ describe("app", () => {
     });
   });
 
-  describe.only("GET /api/decks/:deck_id/cards", () => {
+  describe("GET /api/decks/:deck_id/cards", () => {
     it("responds with the cards for a specific deck", () => {
       const deck_id = "30540c7891af7f8b720efb8f";
       return request(app)
         .get(`/api/decks/${deck_id}/cards`)
         .expect(200)
-        .then(({ body }) => {
-          console.log(body);
+        .then(({ body: {cards} }) => {
+          expect(cards).toHaveLength(5);
+          expect(cards).toBeInstanceOf(Array);
         });
     });
   });

@@ -5,7 +5,7 @@ exports.fetchDecks = async () => {
 };
 
 exports.fetchCardsByDeckId = async (deckId) => {
-  const deck = await Deck.findById(deckId).populate("cards");
+  const deck = await Deck.findById(deckId)
   if (!deck) {
     throw { status: 404, msg: "Deck not found" };
   }

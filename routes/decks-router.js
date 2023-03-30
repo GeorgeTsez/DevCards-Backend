@@ -9,6 +9,6 @@ decksRouter.route("/").get(getDecks);
 
 // BELOW ARE ADDITIONAL ROUTES FOR LATER USE!
 
-decksRouter.route("/:decks_id/cards").get(getCardsByDeckId)
+decksRouter.route("/:deck_id/cards").get(getCardsByDeckId)
 
 module.exports = decksRouter;
