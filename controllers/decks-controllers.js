@@ -1,4 +1,4 @@
-const { fetchDecks, fetchCardsByDeckId, createSingleDeck } = require("../models/decks-models");
+const { fetchDecks, createSingleDeck, fetchCardsByDeckId } = require("../models/decks-models");
 
 exports.getDecks = (req, res, next) => {
   fetchDecks()
@@ -19,16 +19,15 @@ exports.getCardsByDeckId = (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-  };
-
+};
 exports.postSingleDeck = (req, res, next) => {
   const {body} = req
   createSingleDeck(body)
+
     .then((createdDeck) => {
       res.status(201).send({ createdDeck });
     })
     .catch((err) => {
-      console.log(err)
       next(err);
     });
 };

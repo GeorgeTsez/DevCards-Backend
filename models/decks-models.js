@@ -16,9 +16,9 @@ exports.fetchCardsByDeckId = async (deckId) => {
   }
   return deck.cards;
 };
-
 exports.createSingleDeck = async (body) => {
+  
   return  Deck.create({title: "Any Deck",
   description: "Trying to be Created"})
+  
 };
-
