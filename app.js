@@ -3,9 +3,20 @@ const {
   handle404Paths,
   handle500Errors,
 } = require("./controllers/error-handling-controllers");
+const setupDB = require("./db/connection");
+
 const app = express();
 app.use(express.json());
-const options = { useNewUrlParser: true, useUnifiedTopology: true };
+
+const init = () => {
+  setupDB()
+    .then(() => {
+      console.log("Connected to DB");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 //do we need cors??
 
@@ -16,4 +27,4 @@ app.use("/api", apiRouter);
 app.use(handle404Paths);
 app.use(handle500Errors);
 
-module.exports = app;
+module.exports = { app, init };
