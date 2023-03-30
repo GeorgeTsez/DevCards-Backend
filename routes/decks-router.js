@@ -1,15 +1,10 @@
-const { getDecks, postSingleDeck } = require("../controllers/decks-controllers");
 const {
   getDecks,
   getCardsByDeckId,
   postSingleDeck
 } = require("../controllers/decks-controllers");
 
-const { getDecks, postSingleDeck } = require("../controllers/decks-controllers");
-
 const decksRouter = require("express").Router();
-
-decksRouter.route("/").get(getDecks).post(postSingleDeck);
 
 decksRouter.route("/").get(getDecks).post(postSingleDeck);
 
