@@ -10,7 +10,7 @@ exports.createSingleDeck = async (body) => {
 }
 
 exports.fetchCardsByDeckId = async (deckId) => {
-  const deck = await Deck.findById(deckId)
+  const deck = await Deck.findById(deckId).populate("cards");
   if (!deck) {
     throw { status: 404, msg: "Deck not found" };
   }
