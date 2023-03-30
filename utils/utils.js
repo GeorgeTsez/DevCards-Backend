@@ -13,6 +13,7 @@ const runBefore = async () => {
 };
 
 const runAfter = async () => {
+  mongoose.connection.close()
   await mongo.stop();
 };
 
