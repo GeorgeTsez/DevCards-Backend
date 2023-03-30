@@ -2,11 +2,16 @@
 const request = require("supertest");
 const { app } = require("../app");
 // const sorted = require('jest-sorted');
-const { runAfter, runBefore } = require("../utils/utils");
+const { runAfter, runBefore, runBeforeEachTest } = require("../utils/utils");
+
 
 beforeAll(async () => {
   await runBefore();
 });
+
+beforeEach(async () => {
+  await runBeforeEachTest();
+})
 
 afterAll(async () => {
   await runAfter();
