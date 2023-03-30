@@ -44,21 +44,31 @@ describe("app", () => {
   });
   describe("GET-/api/users/:user_id", () => {
     it("responds with all the user info and 200 status code ", () => {
-     const user = "c90e5fc8f598188830bbf104"
+      const user = "c90e5fc8f598188830bbf104";
       return request(app)
         .get(`/api/users/${user}`)
         .expect(200)
         .then(({ body: { user } }) => {
           expect(user[0]).toBeInstanceOf(Object);
-            expect(user[0]).toMatchObject({
-              _id:"c90e5fc8f598188830bbf104",
-              email:"user@mushroomkingdom.org",
-              username: "Mario",
-              user_decks: expect.any(Array)
-            });
+          expect(user[0]).toMatchObject({
+            _id: "c90e5fc8f598188830bbf104",
+            email: "user@mushroomkingdom.org",
+            username: "Mario",
+            user_decks: expect.any(Array),
           });
         });
     });
   });
 
-
+  describe.only("GET /api/decks/:deck_id/cards", () => {
+    it("responds with the cards for a specific deck", () => {
+      const deck_id = "30540c7891af7f8b720efb8f";
+      return request(app)
+        .get(`/api/decks/${deck_id}/cards`)
+        .expect(200)
+        .then(({ body }) => {
+          console.log(body);
+        });
+    });
+  });
+});
