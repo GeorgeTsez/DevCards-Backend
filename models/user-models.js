@@ -1,6 +1,6 @@
 const { User } = require("../db/models/users");
 
-exports.fetchUserById = async () => {
+exports.fetchUserById = async (id) => {
 
-  return User.find({_id:"c90e5fc8f598188830bbf104"});
+  return User.find({_id: id});
 };
