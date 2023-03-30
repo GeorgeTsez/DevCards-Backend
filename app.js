@@ -8,6 +8,17 @@ const setupDB = require("./db/connection");
 const app = express();
 app.use(express.json());
 
+
+const init = () => {
+  setupDB()
+    .then(() => {
+      console.log("Connected to DB");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const init = () => {
   setupDB()
     .then(() => {
