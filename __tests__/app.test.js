@@ -3,6 +3,9 @@ const request = require("supertest");
 const { app } = require("../app");
 // const sorted = require('jest-sorted');
 const { runAfter, runBefore } = require("../utils/utils");
+// const Deck = require("../db/models/decks")
+// const Users = require("../db/models/users")
+// const Cards = require("../db/models/cards")
 
 beforeAll(async () => {
   await runBefore();
