@@ -5,9 +5,8 @@ exports.fetchDecks = async () => {
 };
 
 exports.createSingleDeck = async (body) => {
-  return Deck.create({title: "Any Deck",
-  description: "Trying to be Created"})  
-}
+  return Deck.create(body);
+};
 
 exports.fetchCardsByDeckId = async (deckId) => {
   const deck = await Deck.findById(deckId).populate("cards");
@@ -15,10 +14,4 @@ exports.fetchCardsByDeckId = async (deckId) => {
     throw { status: 404, msg: "Deck not found" };
   }
   return deck.cards;
-};
-exports.createSingleDeck = async (body) => {
-  
-  return  Deck.create({title: "Any Deck",
-  description: "Trying to be Created"})
-  
 };
