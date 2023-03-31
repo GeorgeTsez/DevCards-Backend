@@ -1,5 +1,5 @@
-const seed = require("./seed");
 const mongoose = require("mongoose");
+const seed = require("./seed");
 const connection = require("../connection");
 
 const runSeed = () => {

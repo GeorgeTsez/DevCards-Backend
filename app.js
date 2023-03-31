@@ -1,4 +1,8 @@
 const express = require("express");
+// Make sure all schemas are initialised before loading routes
+require("./db/models/decks");
+require("./db/models/cards");
+require("./db/models/users");
 const {
   handle404Paths,
   handle500Errors,
