@@ -99,3 +99,26 @@ describe("app", () => {
     });
   });
 });
+describe("POST /api/cards/card_id", () => {
+  test("201 status code: Created a card", () => {
+    const input =  {
+      front: "String",
+        back: "String"
+    }
+    return request(app)
+      .post(`/api/cards/30540c7891af7f8b720efb8f`)
+      .send(input)
+      .expect(201)
+      .then(({ body }) => {
+        expect(body.createdCard).toBeInstanceOf(Object);
+        expect(body.createdCard).toEqual(
+          expect.objectContaining({
+            front: "String",
+            back: "String",
+            _id: expect.any(String)
+          })
+        );
+      });
+  });
+
+})

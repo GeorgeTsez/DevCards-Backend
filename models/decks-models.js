@@ -5,8 +5,9 @@ exports.fetchDecks = async () => {
 };
 
 exports.createSingleDeck = async (body) => {
-  return Deck.create(body);
-};
+  return Deck.create(body)  
+}
+
 
 exports.fetchCardsByDeckId = async (deckId) => {
   const deck = await Deck.findById(deckId).populate("cards");
@@ -15,3 +16,4 @@ exports.fetchCardsByDeckId = async (deckId) => {
   }
   return deck.cards;
 };
+
