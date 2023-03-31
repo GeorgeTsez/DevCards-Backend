@@ -7,16 +7,17 @@ let mongo;
 
 const runBefore = async () => {
   mongo = await MongoMemoryServer.create();
-  // console.log(await mongo.getUri());
   await setupDB(mongo.getUri());
-  await seed();
-  console.log("Seed function completed successfully");
 };
 
+const runBeforeEachTest = async () => {
+  await mongoose.connection.dropDatabase();
+  await seed();
+}
+
 const runAfter = async () => {
-  // add this to stop the terminal from hanging
   await mongoose.disconnect();
   await mongo.stop();
 };
 
-module.exports = { runBefore, runAfter };
+module.exports = { runBefore, runAfter, runBeforeEachTest };

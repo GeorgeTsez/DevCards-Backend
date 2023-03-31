@@ -1,12 +1,15 @@
-// const seed = require("../db/seed/seed");
 const request = require("supertest");
 const { app } = require("../app");
 // const sorted = require('jest-sorted');
-const { runAfter, runBefore } = require("../utils/utils");
+const { runAfter, runBefore, runBeforeEachTest } = require("../utils/utils");
 
 beforeAll(async () => {
   await runBefore();
 });
+
+beforeEach(async () => {
+  await runBeforeEachTest();
+})
 
 afterAll(async () => {
   await runAfter();
@@ -59,6 +62,29 @@ describe("app", () => {
         });
     });
   });
+  describe("POST /api/deck/", () => {
+    test("201 status code: Created a deck", () => {
+      const input =  {
+        title: "Any Deck",
+        description: "Trying to be Created"
+      }
+      return request(app)
+        .post(`/api/decks/`)
+        .send(input)
+        .expect(201)
+        .then(({ body }) => {
+          expect(body.createdDeck).toBeInstanceOf(Object);
+          expect(body.createdDeck).toEqual(
+            expect.objectContaining({
+              title: "Any Deck",
+              description: "Trying to be Created",
+              cards: [],
+              _id: expect.any(String)
+            })
+          );
+        });
+    });
+  })
 
   describe("GET /api/decks/:deck_id/cards", () => {
     it("responds with the cards for a specific deck", () => {
