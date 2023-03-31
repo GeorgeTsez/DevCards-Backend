@@ -2,7 +2,7 @@ const { postSingleCard } = require("../controllers/cards-controller")
 
 const cardsRouter = require("express").Router();
 
-cardsRouter.route("/").post(postSingleCard);
+cardsRouter.route("/:deck_id").post(postSingleCard);
 
 
 

@@ -106,7 +106,7 @@ describe("POST /api/cards/card_id", () => {
         back: "String"
     }
     return request(app)
-      .post(`/api/cards/`)
+      .post(`/api/cards/30540c7891af7f8b720efb8f`)
       .send(input)
       .expect(201)
       .then(({ body }) => {
@@ -120,4 +120,5 @@ describe("POST /api/cards/card_id", () => {
         );
       });
   });
+
 })
