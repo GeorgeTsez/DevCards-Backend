@@ -9,7 +9,7 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   await runBeforeEachTest();
-})
+});
 
 afterAll(async () => {
   await runAfter();
@@ -64,10 +64,10 @@ describe("app", () => {
   });
   describe("POST /api/deck/", () => {
     test("201 status code: Created a deck", () => {
-      const input =  {
+      const input = {
         title: "Any Deck",
-        description: "Trying to be Created"
-      }
+        description: "Trying to be Created",
+      };
       return request(app)
         .post(`/api/decks/`)
         .send(input)
@@ -79,12 +79,12 @@ describe("app", () => {
               title: "Any Deck",
               description: "Trying to be Created",
               cards: [],
-              _id: expect.any(String)
+              _id: expect.any(String),
             })
           );
         });
     });
-  })
+  });
 
   describe("GET /api/decks/:deck_id/cards", () => {
     it("responds with the cards for a specific deck", () => {
@@ -92,10 +92,16 @@ describe("app", () => {
       return request(app)
         .get(`/api/decks/${deck_id}/cards`)
         .expect(200)
-        .then(({ body: {cards} }) => {
+        .then(({ body: { cards } }) => {
           expect(cards).toHaveLength(5);
           expect(cards).toBeInstanceOf(Array);
         });
+    });
+  });
+  describe("DELETE /api/cards/:card_id", () => {
+    it("responds with a 204 code and removes the specified card", () => {
+      const card_id = "57725bdf60e7284b66fb3466";
+      return request(app).delete(`/api/cards/${card_id}`).expect(204);
     });
   });
 });
