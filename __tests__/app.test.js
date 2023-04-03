@@ -45,6 +45,25 @@ describe("app", () => {
         });
     });
   });
+  describe("GET-/api/users", () => {
+    it("responds with all the users in the DB and a 200 status code", () => {
+      return request(app)
+        .get("/api/users")
+        .expect(200)
+        .then(({ body: { users } }) => {
+          expect(users).toHaveLength(2);
+          expect(users).toBeInstanceOf(Array);
+          users.forEach((user) => {
+            expect(user).toMatchObject({
+              _id: expect.any(String),
+              username: expect.any(String),
+              email: expect.any(String),
+              user_decks: expect.any(Array),
+            });
+          });
+        });
+    });
+  });
   describe("GET-/api/users/:user_id", () => {
     it("responds with all the user info and 200 status code ", () => {
       const user = "c90e5fc8f598188830bbf104";
@@ -87,7 +106,7 @@ describe("app", () => {
     });
   });
 
-describe("GET /api/decks/:deck_id/cards", () => {
+  describe("GET /api/decks/:deck_id/cards", () => {
     it("responds with the cards for a specific deck", () => {
       const deck_id = "30540c7891af7f8b720efb8f";
       return request(app)
@@ -96,11 +115,11 @@ describe("GET /api/decks/:deck_id/cards", () => {
         .then(({ body: { cards } }) => {
           expect(cards).toHaveLength(5);
           expect(cards).toBeInstanceOf(Array);
-      });
+        });
+    });
   });
-});
 
-describe("DELETE /api/cards/:card_id", () => {
+  describe("DELETE /api/cards/:card_id", () => {
     it("responds with a 204 code and removes the specified card", () => {
       const card_id = "57725bdf60e7284b66fb3466";
       return request(app).delete(`/api/cards/${card_id}`).expect(204);
@@ -133,10 +152,10 @@ describe("POST /api/cards/", () => {
 
 describe("PATCH /api/cards/:card_id", () => {
   test("200 status code: Updated a card", () => {
-    const input =  {
+    const input = {
       front: "Replacement String",
-        back: "Replacement String"
-    }
+      back: "Replacement String",
+    };
     return request(app)
       .patch(`/api/cards/6147ff219369a989c0f71235`)
       .send(input)
@@ -147,33 +166,33 @@ describe("PATCH /api/cards/:card_id", () => {
           expect.objectContaining({
             front: "Replacement String",
             back: "Replacement String",
-            _id: "6147ff219369a989c0f71235"
+            _id: "6147ff219369a989c0f71235",
           })
         );
       });
   });
   test("400 status code: Updated a card", () => {
-    const input =  {
+    const input = {
       left: "Replacement String",
-        right: "Replacement String"
-    }
+      right: "Replacement String",
+    };
     return request(app)
       .patch(`/api/cards/6147ff219369a989c0f71235`)
       .send(input)
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe('Invalid Card Format')
+        expect(body.msg).toBe("Invalid Card Format");
       });
   });
   test("200 status code: Updated a card", () => {
-    const input =  {
-        front: "Replacement String",
-        right: "Replacement String",
-        back: "Replacement String"
-    }
+    const input = {
+      front: "Replacement String",
+      right: "Replacement String",
+      back: "Replacement String",
+    };
     return request(app)
       .patch(`/api/cards/6147ff219369a989c0f71235`)
       .send(input)
-      .expect(200)
+      .expect(200);
   });
 });
