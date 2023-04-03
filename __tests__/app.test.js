@@ -55,7 +55,7 @@ describe("app", () => {
           expect(user[0]).toBeInstanceOf(Object);
           expect(user[0]).toMatchObject({
             _id: "c90e5fc8f598188830bbf104",
-            email: "user@mushroomkingdom.org",
+            email: "plumber@mushroomkingdom.org",
             username: "Mario",
             user_decks: expect.any(Array),
           });
@@ -103,5 +103,27 @@ describe("app", () => {
       const card_id = "57725bdf60e7284b66fb3466";
       return request(app).delete(`/api/cards/${card_id}`).expect(204);
     });
+  });
+});
+describe("POST /api/cards/card_id", () => {
+  test("201 status code: Created a card", () => {
+    const input = {
+      front: "String",
+      back: "String",
+    };
+    return request(app)
+      .post(`/api/cards/30540c7891af7f8b720efb8f`)
+      .send(input)
+      .expect(201)
+      .then(({ body }) => {
+        expect(body.createdCard).toBeInstanceOf(Object);
+        expect(body.createdCard).toEqual(
+          expect.objectContaining({
+            front: "String",
+            back: "String",
+            _id: expect.any(String),
+          })
+        );
+      });
   });
 });
