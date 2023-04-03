@@ -137,7 +137,7 @@ describe("PATCH /api/cards/:card_id", () => {
         back: "Replacement String"
     }
     return request(app)
-      .post(`/api/cards/6147ff219369a989c0f71235`)
+      .patch(`/api/cards/6147ff219369a989c0f71235`)
       .send(input)
       .expect(200)
       .then(({ body }) => {

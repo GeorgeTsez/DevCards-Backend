@@ -15,3 +15,15 @@ exports.removeCardById = async (card_id) => {
   await Card.findByIdAndRemove(card_id);
   await Deck.updateMany({ cards: card_id }, { $pull: { cards: card_id } });
 };
+
+exports.createSingleCard = async (body) => {
+    return Card.create(body)
+  };
+
+exports.updateSingleCard = async (body, card_id) => {
+    console.log(body)
+    return Card.findByIdAndUpdate(card_id, {$set : body})
+    .then((result) => {
+      return result
+    })
+  };

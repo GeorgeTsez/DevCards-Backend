@@ -1,4 +1,4 @@
-const { createSingleCard, removeCardById } = require("../models/cards-models");
+const { createSingleCard, removeCardById, updateSingleCard } = require("../models/cards-models");
 
 exports.postSingleCard = (req, res, next) => {
   const { body } = req;
@@ -22,3 +22,15 @@ exports.deleteCardById = (req, res, next) => {
       next(err);
     });
 };
+
+exports.patchSingleCard = (req, res, next) => {
+    const { body } = req
+    const cardId = req.params.card_id
+    updateSingleCard(body, cardId)
+      .then((updatedCard) => {
+        res.status(200).send({ updatedCard });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  };
