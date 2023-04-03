@@ -6,6 +6,7 @@ require("./db/models/users");
 const {
   handle404Paths,
   handle500Errors,
+  handle400Errors
 } = require("./controllers/error-handling-controllers");
 const setupDB = require("./db/connection");
 
@@ -26,6 +27,7 @@ const apiRouter = require("./routes/api-router");
 
 app.use("/api", apiRouter);
 
+app.use(handle400Errors);
 app.use(handle404Paths);
 app.use(handle500Errors);
 
