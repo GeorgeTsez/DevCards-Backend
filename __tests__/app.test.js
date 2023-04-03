@@ -62,14 +62,15 @@ describe("app", () => {
         });
     });
   });
-  describe("POST /api/deck/", () => {
+  describe("POST /api/deck/:user_id", () => {
     test("201 status code: Created a deck", () => {
       const input = {
         title: "Any Deck",
         description: "Trying to be Created",
       };
+      const user = "c90e5fc8f598188830bbf104";
       return request(app)
-        .post(`/api/decks/`)
+        .post(`/api/decks/${user}`)
         .send(input)
         .expect(201)
         .then(({ body }) => {
