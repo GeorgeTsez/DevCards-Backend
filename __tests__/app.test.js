@@ -86,7 +86,7 @@ describe("app", () => {
     });
   });
 
-  describe("GET /api/decks/:deck_id/cards", () => {
+describe("GET /api/decks/:deck_id/cards", () => {
     it("responds with the cards for a specific deck", () => {
       const deck_id = "30540c7891af7f8b720efb8f";
       return request(app)
@@ -95,17 +95,19 @@ describe("app", () => {
         .then(({ body: { cards } }) => {
           expect(cards).toHaveLength(5);
           expect(cards).toBeInstanceOf(Array);
-        });
-    });
+      });
   });
-  describe("DELETE /api/cards/:card_id", () => {
+});
+
+describe("DELETE /api/cards/:card_id", () => {
     it("responds with a 204 code and removes the specified card", () => {
       const card_id = "57725bdf60e7284b66fb3466";
       return request(app).delete(`/api/cards/${card_id}`).expect(204);
     });
   });
 });
-describe("POST /api/cards/card_id", () => {
+
+describe("POST /api/cards/", () => {
   test("201 status code: Created a card", () => {
     const input = {
       front: "String",
@@ -122,6 +124,29 @@ describe("POST /api/cards/card_id", () => {
             front: "String",
             back: "String",
             _id: expect.any(String),
+          })
+        );
+      });
+  });
+});
+
+describe("PATCH /api/cards/:card_id", () => {
+  test("200 status code: Created a card", () => {
+    const input =  {
+      front: "Replacement String",
+        back: "Replacement String"
+    }
+    return request(app)
+      .post(`/api/cards/6147ff219369a989c0f71235`)
+      .send(input)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body.updatedCard).toBeInstanceOf(Object);
+        expect(body.updatedCard).toEqual(
+          expect.objectContaining({
+            front: "Replacement String",
+            back: "Replacement String",
+            _id: "6147ff219369a989c0f71235"
           })
         );
       });
