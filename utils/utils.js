@@ -20,4 +20,14 @@ const runAfter = async () => {
   await mongo.stop();
 };
 
-module.exports = { runBefore, runAfter, runBeforeEachTest };
+const modelValidator = (Model, data) => {
+  const check = new Model(data)
+  const err = check.validateSync();
+  if (err) {
+    return false
+  } else {
+    return true
+  }
+}
+
+module.exports = { runBefore, runAfter, runBeforeEachTest, modelValidator };

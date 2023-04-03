@@ -131,7 +131,7 @@ describe("POST /api/cards/", () => {
 });
 
 describe("PATCH /api/cards/:card_id", () => {
-  test("200 status code: Created a card", () => {
+  test("200 status code: Updated a card", () => {
     const input =  {
       front: "Replacement String",
         back: "Replacement String"
@@ -150,5 +150,29 @@ describe("PATCH /api/cards/:card_id", () => {
           })
         );
       });
+  });
+  test("400 status code: Updated a card", () => {
+    const input =  {
+      left: "Replacement String",
+        right: "Replacement String"
+    }
+    return request(app)
+      .patch(`/api/cards/6147ff219369a989c0f71235`)
+      .send(input)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Invalid Card Format')
+      });
+  });
+  test("200 status code: Updated a card", () => {
+    const input =  {
+        front: "Replacement String",
+        right: "Replacement String",
+        back: "Replacement String"
+    }
+    return request(app)
+      .patch(`/api/cards/6147ff219369a989c0f71235`)
+      .send(input)
+      .expect(200)
   });
 });
