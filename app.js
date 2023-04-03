@@ -33,6 +33,8 @@ const apiRouter = require("./routes/api-router");
 
 app.use("/api", apiRouter);
 
+let socket = io();
+
 app.use(handle400Errors);
 app.use(handle404Paths);
 app.use(handle500Errors);
@@ -41,4 +43,4 @@ server.listen(3000, () => {
   console.log("listening on *:3000");
 });
 
-module.exports = { app, init, io };
+module.exports = { app, init };
