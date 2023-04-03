@@ -9,7 +9,7 @@ beforeAll(async () => {
 
 beforeEach(async () => {
   await runBeforeEachTest();
-})
+});
 
 afterAll(async () => {
   await runAfter();
@@ -55,7 +55,7 @@ describe("app", () => {
           expect(user[0]).toBeInstanceOf(Object);
           expect(user[0]).toMatchObject({
             _id: "c90e5fc8f598188830bbf104",
-            email: "user@mushroomkingdom.org",
+            email: "plumber@mushroomkingdom.org",
             username: "Mario",
             user_decks: expect.any(Array),
           });
@@ -64,10 +64,10 @@ describe("app", () => {
   });
   describe("POST /api/deck/", () => {
     test("201 status code: Created a deck", () => {
-      const input =  {
+      const input = {
         title: "Any Deck",
-        description: "Trying to be Created"
-      }
+        description: "Trying to be Created",
+      };
       return request(app)
         .post(`/api/decks/`)
         .send(input)
@@ -79,12 +79,12 @@ describe("app", () => {
               title: "Any Deck",
               description: "Trying to be Created",
               cards: [],
-              _id: expect.any(String)
+              _id: expect.any(String),
             })
           );
         });
     });
-  })
+  });
 
   describe("GET /api/decks/:deck_id/cards", () => {
     it("responds with the cards for a specific deck", () => {
@@ -92,7 +92,7 @@ describe("app", () => {
       return request(app)
         .get(`/api/decks/${deck_id}/cards`)
         .expect(200)
-        .then(({ body: {cards} }) => {
+        .then(({ body: { cards } }) => {
           expect(cards).toHaveLength(5);
           expect(cards).toBeInstanceOf(Array);
         });
@@ -101,10 +101,10 @@ describe("app", () => {
 });
 describe("POST /api/cards/card_id", () => {
   test("201 status code: Created a card", () => {
-    const input =  {
+    const input = {
       front: "String",
-        back: "String"
-    }
+      back: "String",
+    };
     return request(app)
       .post(`/api/cards/30540c7891af7f8b720efb8f`)
       .send(input)
@@ -115,10 +115,9 @@ describe("POST /api/cards/card_id", () => {
           expect.objectContaining({
             front: "String",
             back: "String",
-            _id: expect.any(String)
+            _id: expect.any(String),
           })
         );
       });
   });
-
-})
+});
