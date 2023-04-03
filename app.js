@@ -6,11 +6,17 @@ require("./db/models/users");
 const {
   handle404Paths,
   handle500Errors,
-  handle400Errors
+  handle400Errors,
 } = require("./controllers/error-handling-controllers");
 const setupDB = require("./db/connection");
 
 const app = express();
+const http = require("http");
+const server = http.createServer(app);
+
+const { Server } = require("socket.io");
+const io = new Server(server);
+
 app.use(express.json());
 
 const init = () => {
@@ -31,4 +37,8 @@ app.use(handle400Errors);
 app.use(handle404Paths);
 app.use(handle500Errors);
 
-module.exports = { app, init };
+server.listen(3000, () => {
+  console.log("listening on *:3000");
+});
+
+module.exports = { app, init, io };
