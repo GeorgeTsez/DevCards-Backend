@@ -22,8 +22,6 @@ exports.createSingleCard = async (body) => {
 };
 
 exports.updateSingleCard = async (body, card_id) => {
-  const variable = modelValidator(Card, body);
-  console.log(variable);
   if (modelValidator(Card, body)) {
     return Card.findByIdAndUpdate(
       card_id,
