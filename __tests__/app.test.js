@@ -98,6 +98,12 @@ describe("app", () => {
         });
     });
   });
+  describe("DELETE /api/cards/:card_id", () => {
+    it("responds with a 204 code and removes the specified card", () => {
+      const card_id = "57725bdf60e7284b66fb3466";
+      return request(app).delete(`/api/cards/${card_id}`).expect(204);
+    });
+  });
 });
 describe("POST /api/cards/card_id", () => {
   test("201 status code: Created a card", () => {
