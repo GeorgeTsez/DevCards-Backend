@@ -128,6 +128,27 @@ describe("app", () => {
         });
     });
   });
+  describe("PATCH /api/decks/:deck_id/user-percent", () => {
+    it("responds with the updated array value and a 200 status code", () => {
+      const input = {
+        user_percent: 50,
+      };
+      return request(app)
+        .patch(`/api/decks/30540c7891af7f8b720efb8f/user-percent`)
+        .send(input)
+        .expect(200)
+        .then(({ body }) => {
+          console.log(body);
+          expect(body.updatedUserPercent).toBeInstanceOf(Object);
+          expect(body.updatedUserPercent).toEqual(
+            expect.objectContaining({
+              user_percent: [50],
+              _id: "30540c7891af7f8b720efb8f",
+            })
+          );
+        });
+    });
+  });
 
   describe("GET /api/decks/:deck_id/cards", () => {
     it("responds with the cards for a specific deck", () => {

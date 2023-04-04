@@ -3,6 +3,7 @@ const {
   createSingleDeck,
   fetchCardsByDeckId,
   updateSingleDeck,
+  updateSingleDeckForUserPercent,
 } = require("../models/decks-models");
 
 exports.getDecks = (req, res, next) => {
@@ -43,6 +44,18 @@ exports.patchSingleDeck = (req, res, next) => {
   updateSingleDeck(body, deck_id)
     .then((updatedDeck) => {
       res.status(200).send({ updatedDeck });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.patchSingleDeckForUserPercent = (req, res, next) => {
+  const { body } = req;
+  const deck_id = req.params.deck_id;
+  updateSingleDeckForUserPercent(body, deck_id)
+    .then((updatedUserPercent) => {
+      res.status(200).send({ updatedUserPercent });
     })
     .catch((err) => {
       next(err);
