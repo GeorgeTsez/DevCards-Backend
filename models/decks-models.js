@@ -22,3 +22,13 @@ exports.fetchCardsByDeckId = async (deckId) => {
   }
   return deck.cards;
 };
+
+exports.updateSingleDeck = async (body, deck_id) => {
+  return Deck.findByIdAndUpdate(
+    deck_id,
+    { $set: body },
+    { returnDocument: "after" }
+  ).then((updatedDeck) => {
+    return updatedDeck;
+  });
+};

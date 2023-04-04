@@ -2,6 +2,7 @@ const {
   fetchDecks,
   createSingleDeck,
   fetchCardsByDeckId,
+  updateSingleDeck,
 } = require("../models/decks-models");
 
 exports.getDecks = (req, res, next) => {
@@ -30,6 +31,18 @@ exports.postSingleDeck = (req, res, next) => {
   createSingleDeck(body, user_id)
     .then((createdDeck) => {
       res.status(201).send({ createdDeck });
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.patchSingleDeck = (req, res, next) => {
+  const { body } = req;
+  const deck_id = req.params.deck_id;
+  updateSingleDeck(body, deck_id)
+    .then((updatedDeck) => {
+      res.status(200).send({ updatedDeck });
     })
     .catch((err) => {
       next(err);
