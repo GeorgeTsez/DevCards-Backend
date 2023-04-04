@@ -134,12 +134,13 @@ describe("app", () => {
         user_percent: 50,
       };
       return request(app)
-        .patch(`/api/decks/30540c7891af7f8b720efb8f`)
+        .patch(`/api/decks/30540c7891af7f8b720efb8f/user-percent`)
         .send(input)
         .expect(200)
         .then(({ body }) => {
-          expect(body.updatedDeck).toBeInstanceOf(Object);
-          expect(body.updatedDeck).toEqual(
+          console.log(body);
+          expect(body.updatedUserPercent).toBeInstanceOf(Object);
+          expect(body.updatedUserPercent).toEqual(
             expect.objectContaining({
               user_percent: [50],
               _id: "30540c7891af7f8b720efb8f",
