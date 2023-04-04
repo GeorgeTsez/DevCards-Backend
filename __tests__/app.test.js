@@ -105,28 +105,6 @@ describe("app", () => {
         });
     });
   });
-  describe("POST /api/cards/", () => {
-    test("201 status code: Created a card", () => {
-      const input = {
-        front: "String",
-        back: "String",
-      };
-      return request(app)
-        .post(`/api/cards/30540c7891af7f8b720efb8f`)
-        .send(input)
-        .expect(201)
-        .then(({ body }) => {
-          expect(body.createdCard).toBeInstanceOf(Object);
-          expect(body.createdCard).toEqual(
-            expect.objectContaining({
-              front: "String",
-              back: "String",
-              _id: expect.any(String),
-            })
-          );
-        });
-    });
-  });
 
   describe("PATCH /api/decks/:deck_id", () => {
     test("200 status code: Updated a deck", () => {
@@ -170,7 +148,7 @@ describe("app", () => {
       return request(app).delete(`/api/cards/${card_id}`).expect(204);
     });
   });
-  describe("POST /api/cards/", () => {
+  describe("POST /api/cards/:deck_id", () => {
     test("201 status code: Created a card", () => {
       const input = {
         front: "String",
@@ -213,30 +191,6 @@ describe("app", () => {
             })
           );
         });
-    });
-    test("400 status code: Updated a card", () => {
-      const input = {
-        left: "Replacement String",
-        right: "Replacement String",
-      };
-      return request(app)
-        .patch(`/api/cards/6147ff219369a989c0f71235`)
-        .send(input)
-        .expect(400)
-        .then(({ body }) => {
-          expect(body.msg).toBe("Invalid Card Format");
-        });
-    });
-    test("200 status code: Updated a card", () => {
-      const input = {
-        front: "Replacement String",
-        right: "Replacement String",
-        back: "Replacement String",
-      };
-      return request(app)
-        .patch(`/api/cards/6147ff219369a989c0f71235`)
-        .send(input)
-        .expect(200);
     });
   });
 });

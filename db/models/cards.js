@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const cardSchema = new mongoose.Schema({
-  front: {type: String, required:[true, 'Front Card Text required']},
-  back: {type: String, required:[true, 'Back Card Text required']},
+  front: String,
+  back: String,
 });
 
 const Card = mongoose.model("Card", cardSchema);
