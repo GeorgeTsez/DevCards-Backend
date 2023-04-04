@@ -32,3 +32,13 @@ exports.updateSingleDeck = async (body, deck_id) => {
     return updatedDeck;
   });
 };
+
+exports.updateSingleDeckForUserPercent = async (body, deck_id) => {
+  return Deck.findByIdAndUpdate(
+    deck_id,
+    { $push: body },
+    { returnDocument: "after" }
+  ).then((updatedUserPercent) => {
+    return updatedUserPercent;
+  });
+};
