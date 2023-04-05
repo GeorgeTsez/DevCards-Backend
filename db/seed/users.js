@@ -3,7 +3,7 @@ const { User } = require("../models/users");
 const users = [
   {
     _id: "c90e5fc8f598188830bbf104",
-    username: "Mario85",
+    username: "mario85",
     email: "plumber@mushroomkingdom.org",
     user_decks: [
       "30540c7891af7f8b720efb8f",
@@ -13,7 +13,7 @@ const users = [
   },
   {
     _id: "d4e667c54195f1d421c98437",
-    username: "Peach1309",
+    username: "peach1309",
     email: "princess@mushroomkingdom.org",
     user_decks: [],
   },
