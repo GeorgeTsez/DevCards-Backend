@@ -3,8 +3,8 @@ const { Deck } = require("../models/decks");
 const decks = [
   {
     _id: "30540c7891af7f8b720efb8f",
-    title: "JS",
-    description: "fundamentals",
+    title: "JavaScript",
+    description: "Fundamentals",
     cards: [
       "57725bdf60e7284b66fb3466",
       "e9b5443b704d23390e1da999",
@@ -16,7 +16,7 @@ const decks = [
   {
     _id: "3751121ee06f2ee893d629b8",
     title: "Python",
-    description: "Tralala",
+    description: "Functions",
     cards: [
       "5bafd044562ab6c1655ffce5",
       "ee2cdcf4b669c8091b62cbf2",
@@ -25,8 +25,8 @@ const decks = [
   },
   {
     _id: "d5fd8b0c788e5e8bdfbe758f",
-    title: "C",
-    description: "weird stuff",
+    title: "C++",
+    description: "Memory Management",
     cards: [],
   },
 ];
